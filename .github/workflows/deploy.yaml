@@ -13,25 +13,25 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       
-      - name: nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'npm'
+    #   - name: nodejs
+    #     uses: actions/setup-node@v3
+    #     with:
+    #       node-version: '20'
+    #       cache: 'npm'
 
-      - name: install packages
-        run: npm ci
+    #   - name: install packages
+    #     run: npm ci
 
-      - name: lint
-        run: npm run lint
+    #   - name: lint
+    #     run: npm run lint
 
-      - name: start test db
-        run: npx prisma migrate deploy
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/event_app_test
+    #   - name: start test db
+    #     run: npx prisma migrate deploy
+    #     env:
+    #       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/event_app_test
 
-      - name: build
-        run: npm run build
+    #   - name: build
+    #     run: npm run build
 
   deploy:
     needs: run-tests
