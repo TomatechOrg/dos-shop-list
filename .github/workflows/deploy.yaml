@@ -9,20 +9,6 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:14
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: dos_shop_list
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -30,7 +16,7 @@ jobs:
       - name: nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20.14
           cache: 'npm'
 
       - name: install packages
@@ -38,11 +24,6 @@ jobs:
 
       - name: lint
         run: npm run lint
-
-      - name: start test db
-        run: npx prisma migrate deploy
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/dos_shop_list
 
       - name: test
         run: npm test
