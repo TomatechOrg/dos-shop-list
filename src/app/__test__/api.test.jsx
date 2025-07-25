@@ -17,7 +17,7 @@ describe('Home', () => {
   it('has edit button', () => {
     render(<Home />)
  
-    const editBtn = screen.getByLabelText('Edit List')
+    const editBtn = screen.getByText('Edit List')
  
     expect(editBtn).toBeInTheDocument()
   })
