@@ -4,13 +4,6 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 export async function GET(req:Request) {
-    if(req.bodyUsed){
-        const { limit } = await req.json();
-
-        if(typeof limit==='boolean' && limit){
-            return NextResponse.json(await prisma.listItem.findMany({where:{count:{gt:0}}, orderBy:{name:'desc'}}));
-        }
-    }
     return NextResponse.json(await prisma.listItem.findMany({orderBy:{name:'desc'}}));
 }
 

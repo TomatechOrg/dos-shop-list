@@ -15,7 +15,7 @@ export default function Home() {
     const loadEntries= async ()=>
     {
         //setEntries([]);
-        const entryData = await fetch("api/list", {
+        const entryData = await fetch("api/list/limited", {
             method:'GET'
         })
         setEntries(await entryData.json());
